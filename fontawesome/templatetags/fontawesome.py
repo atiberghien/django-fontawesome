@@ -11,9 +11,10 @@ register = template.Library()
 def fontawesome_icon(icon, title='', large=False, fixed=False, spin=False, li=False,
     rotate=False, border=False, color=False):
 
-    return mark_safe('<i title="{title}" class="{prefix} {prefix}-{icon}{large}{fixed}{spin}{li}{rotate}{border}" {color}></i>'.format(
+    return mark_safe('<i title="{title}" class="{prefix} {prefix_icon}{icon}{large}{fixed}{spin}{li}{rotate}{border}" {color}></i>'.format(
         title=title,
-        prefix=getattr(settings, 'FONTAWESOME_PREFIX', 'fa'),
+        prefix=getattr(settings, 'FONTAWESOME_PREFIX', 'fas'),
+        prefix_icon=getattr(settings, 'FONTAWESOME_PREFIX_ICON', 'fa-'),
         icon=icon,
         large=' fa-lg' if large is True else '',
         fixed=' fa-fw' if fixed else '',
@@ -29,3 +30,4 @@ def fontawesome_stylesheet():
     href = getattr(settings, 'FONTAWESOME_CSS_URL', static('fontawesome/css/fontawesome-all.min.css'))
     link = format_html('<link href="{0}" rel="stylesheet" media="all">', href)
     return link
+
