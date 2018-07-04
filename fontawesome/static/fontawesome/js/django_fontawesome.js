@@ -32,7 +32,7 @@ function fontawesomeIconDropdown() {
 function format(state) {
     if (!state.id) { return state.text; }
     var icon = $(state.element).data('icon');
-    return '<i class="fas fa-' + icon + '"></i> ' + state.text;
+    return '<i class="' + icon + '"></i> ' + state.text;
 }
 
 var endsWith = function(value, suffix){
@@ -40,8 +40,6 @@ var endsWith = function(value, suffix){
 };
 
 var install  = function(){
-    var prefix = $('select.fontawesome-select').data('fontawesome-prefix');
-    var prefix_icon = $('select.fontawesome-select').data('fontawesome-prefix-icon');
     $('.fontawesome-select').each(function(){
         if ($(this).data('select2')){
             // Already installed - nothing to do
