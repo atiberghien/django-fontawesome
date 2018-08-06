@@ -27,7 +27,6 @@ def fontawesome_icon(icon, title='', large=False, fixed=False, spin=False, li=Fa
 
 @register.simple_tag
 def fontawesome_stylesheet():
-    href = getattr(settings, 'FONTAWESOME_CSS_URL', static('fontawesome/css/fontawesome-all.min.css'))
+    href = getattr(settings, 'FONTAWESOME_CSS_URL', static('fontawesome/css/all.min.css'))
     link = format_html('<link href="{0}" rel="stylesheet" media="all">', href)
     return link
-
