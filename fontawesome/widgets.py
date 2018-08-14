@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
+import six
 
 from .utils import get_icon_choices
 
@@ -33,6 +34,9 @@ class IconWidget(forms.Select):
                     selected_choices.remove(option_value)
             else:
                 selected_html = ''
+            # remove non ascii characters for icon B\xfcrom\xf6bel-Experte GmbH & Co. KG.
+            if issubclass(type(option_label), six.text_type):
+                option_label = option_label.encode('ascii', 'ignore')
             return format_html('<option data-icon="{0}" value="{0}"{1}>{2}</option>',
                 option_value,
                 selected_html,
@@ -55,3 +59,6 @@ class IconWidget(forms.Select):
                 'fontawesome/select2/select2-bootstrap.css'
             )
         }
+
+def removeNonAscii(s):
+    return "".join(filter(lambda x: ord(x)<128, s))
