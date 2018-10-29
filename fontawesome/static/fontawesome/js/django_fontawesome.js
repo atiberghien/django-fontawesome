@@ -60,8 +60,8 @@ var install  = function(){
 
         $(this).select2({
             width:'element',
-            formatResult:format,
-            formatSelection:format,
+            templateResult:format,
+            templateSelection:format,
             escapeMarkup: function(m) {return m;}
         });
 
